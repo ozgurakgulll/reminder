@@ -1,4 +1,34 @@
-<nz-table [nzData]="usersData" class="mt-5 reminder-table"  #fixedTable [nzScroll]="{ x: '1150px', y: '240px' }">
+<div class="flex justify-between mt-8">
+  <div class="grid gap-x-1 grid-cols-4">
+    <nz-input-group [nzSuffix]="suffixIconSearch">
+      <input type="search" nz-input placeholder="Tc no ara"
+
+             (input)="onInput($event)"
+             [(ngModel)]="inputValue" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <span nz-icon nzType="search"></span>
+    </ng-template>
+    <button nz-button nzType="default" nzShape="round">All (2)</button>
+    <button nz-button nzType="default" nzShape="round">Users (1)</button>
+  </div>
+  <button nz-button nzType="default" nzShape="round" (click)="onClick()">
+    <span nz-icon nzType="plus"></span>
+    Yeni Kayıt Ekle
+  </button>
+</div>
+
+<nz-table
+        [nzData]="usersData"
+        class="mt-5 reminder-table"
+        nzShowSizeChanger
+        [nzFrontPagination]="true"
+        [nzLoading]="loading"
+        [nzTotal]="total"
+        [nzPageIndex]="1"
+        [nzPageSize]="5"
+        #fixedTable
+        [nzScroll]="{ x: '1150px', y: '640px' }">
   <thead>
   <tr>
     <th nzLeft [nzSortFn]="true" nzWidth="180px"><span class="text-[#6A6A65]">Name</span></th>
@@ -23,7 +53,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of usersData">
+  <tr *ngFor="let data of fixedTable.data">
     <td nzLeft>
       <div class="flex">
         <div class="flex flex-col mx-3">

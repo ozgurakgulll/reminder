@@ -16,18 +16,11 @@ export interface User{
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit{
+export class UsersComponent{
   usersData:User[] = [];
- constructor(private router: Router,private http: HttpClient) {
+ constructor(private router: Router) {
  }
 
-  ngOnInit(): void {
-    this.http.get('http://localhost:3000/api/sms').subscribe((a:any)=>{
-      this.usersData=a
-      console.log(this.usersData);
-    })
-
-  }
   onClick(modalOpen: boolean) {
     this.router.navigate(['/','add']);
   }
