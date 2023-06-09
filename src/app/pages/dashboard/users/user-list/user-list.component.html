@@ -1,0 +1,62 @@
+<nz-table [nzData]="usersData" class="mt-5 reminder-table"  #fixedTable [nzScroll]="{ x: '1150px', y: '240px' }">
+  <thead>
+  <tr>
+    <th nzLeft [nzSortFn]="true" nzWidth="180px"><span class="text-[#6A6A65]">Name</span></th>
+    <th [nzSortFn]="true" nzWidth="90px">
+      <div class="flex justify-center">
+                <span
+                  nz-icon
+                  nzType="phone"
+                  nzTheme="fill"
+                  class="text-[#51416B] mx-2"
+                ></span>
+        <span class="text-[#6A6A65]">Phone Number</span>
+      </div>
+    </th>
+    <th [nzSortFn]="true" nzWidth="40px">
+      <span class="text-[#6A6A65] flex justify-center">Dose</span>
+    </th>
+    <th [nzSortFn]="true" nzWidth="300px">
+      <span class="text-[#6A6A65]">Mesaj</span>
+    </th>
+    <th nzWidth="40px" nzRight></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of usersData">
+    <td nzLeft>
+      <div class="flex">
+        <div class="flex flex-col mx-3">
+          <span class="text-[#282B2E]">{{ data.name }} {{data.surname}}</span>
+        </div>
+      </div>
+    </td>
+    <td>
+      <div class="flex flex-col justify-center items-center" *ngFor="let a of data.phone">
+        <span class="text-[#524949]">+90{{ a }}</span>
+      </div>
+    </td>
+    <td>
+      <span  class="flex justify-center" >
+             <nz-tag [nzColor]="tag[data.dose]">{{data.dose}}</nz-tag>
+      </span>
+    </td>
+    <td>
+      <span class="text-[#b8b7b5]">
+        {{data.description }}
+      </span>
+    </td>
+    <td nzRight>
+      <button
+        nz-button
+        nzType="default"
+        [nzSize]="'large'"
+        (click)="onEdit()"
+        class="bg-[#ffa800] text-[#ffa800] rounded-md mx-2"
+      >
+        Edit
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
